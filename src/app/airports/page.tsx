@@ -1,5 +1,7 @@
 // Import the necessary modules from Next.js
+import Head from 'next/head';
 import Link from 'next/link';
+import AirportRow from './AirportRow';
 
 function AirportsPage() {
   // Array containing airport data for each airport
@@ -13,6 +15,9 @@ function AirportsPage() {
 
   return (
     <div>
+      <Head>
+        <title>Airports List</title>
+      </Head>
       <h1>Airports Information</h1>
       <table className="table">
         <thead>
@@ -24,15 +29,7 @@ function AirportsPage() {
         </thead>
         <tbody>
           {airports.map((airport) => (
-            <tr key={airport.id}>
-              <td>
-                <Link href={`/airports/${airport.id}`}>
-                    {airport.code}
-                </Link>
-              </td>
-              <td>{airport.name}</td>
-              <td>{airport.state}</td>
-            </tr>
+            <AirportRow key={airport.id} airport={airport} />
           ))}
         </tbody>
       </table>
